@@ -33,7 +33,7 @@ public class Begin extends JFrame {
         //设置窗体可见
         this.setVisible(true);
 
-        Gif gif = new Gif(new File("static/image/monster.gif"), 10); //参数1文件路径，参数2gif图速度
+        Gif gif = new Gif(new File(Begin.class.getResource("/static/image/monster.gif").getPath()), 10); //参数1文件路径，参数2gif图速度
         gif.setBounds(500, 500, 83, 78);
         mainJpanel.add(gif);
     }
