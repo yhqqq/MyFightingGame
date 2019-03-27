@@ -24,12 +24,15 @@ public class MonsterConstant {
     public static final double PROBABILITY_SMALL_MONSTER_Lv3_EQUIPMENT = 0.05;
 
     //大怪物掉落一级二级三级装备的概率
-    public static final double PROBABILITY_BIG_MONSTER_Lv1_EQUIPMENT = 0.25;
-    public static final double PROBABILITY_BIG_MONSTER_Lv2_EQUIPMENT = 0.5;
-    public static final double PROBABILITY_BIG_MONSTER_Lv3_EQUIPMENT = 0.15;
+    public static final double PROBABILITY_BIG_MONSTER_Lv1_EQUIPMENT = 0.15;
+    public static final double PROBABILITY_BIG_MONSTER_Lv2_EQUIPMENT = 0.6;
+    public static final double PROBABILITY_BIG_MONSTER_Lv3_EQUIPMENT = 0.25;
 
     //大小怪物掉落经验值
     public static final int EXP_SMALL_MONSTER = 1;
     public static final int EXP_BIG_MONSTER = 5;
     public static final int EXP_HUGE_MONSTER = 10;
+
+    //攻击频率
+    public static final int ATTACK_CD = 1;
 }

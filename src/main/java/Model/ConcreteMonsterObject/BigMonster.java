@@ -1,6 +1,7 @@
-package Model.ConcreteObject;
+package Model.ConcreteMonsterObject;
 
 import Constant.MonsterConstant;
+import Factory.EquipmentFactory;
 import Model.AbstractMonster;
 import Service.GameContext;
 /**
@@ -21,7 +22,11 @@ public class BigMonster extends AbstractMonster {
     }
 
     public void die() {
-        GameContext.getHero().gainExp(MonsterConstant.EXP_BIG_MONSTER);
+        log(getName() + " 被你击杀了");
+        GameContext.getTheHero().gainExp(MonsterConstant.EXP_BIG_MONSTER);
+        GameContext.getTheMonster().deleteObserver(GameContext.getMonsterObserver());
         GameContext.setTheMonster(null);
+        GameContext.setMonsterObserver(null);
+        GameContext.setEquipmentOntheGround(new EquipmentFactory().monsterDie(this));
     }
 }

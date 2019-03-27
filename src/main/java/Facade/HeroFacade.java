@@ -1,7 +1,9 @@
 package Facade;
 
 import Model.AbstractEquipment;
+import Model.AbstractHero;
 import Model.AbstractMonster;
+import Observer.MonsterObserver;
 
 /**
  * Created by yuhqqq on 2019/3/26.
@@ -12,7 +14,7 @@ public interface HeroFacade {
      * 游戏初始化时，根据用户选择，创建相应类型的英雄
      * @param heroType
      */
-    void newHero(int heroType);
+    AbstractHero newHero(int heroType);
 
     /**
      * 与某一个怪物开始战斗，应当将这个怪物纳入观察者模式，
@@ -20,7 +22,7 @@ public interface HeroFacade {
      * 怎么操作待定
      * @param monster
      */
-    void beginFight(AbstractMonster monster);
+    MonsterObserver beginFight(AbstractMonster monster);
 
     /**
      * 英雄释放技能
@@ -39,6 +41,6 @@ public interface HeroFacade {
      * 英雄选择穿上一件装备
      * @param equipment
      */
-    void getEquipment(AbstractEquipment equipment);
+    void wearEquipment(AbstractEquipment equipment);
 
 }

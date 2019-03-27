@@ -1,11 +1,14 @@
 package Model;
 
 import Logger.Logger;
+import Service.GameContext;
+
+import java.util.Observable;
 
 /**
  * Created by yuhqqq on 2019/3/26.
  */
-public abstract class AbstractMonster {
+public abstract class AbstractMonster extends Observable {
 
     private int level;//1,2,3
 
@@ -15,9 +18,9 @@ public abstract class AbstractMonster {
 
     private int MaxHP;
 
-    private double attackNum; //攻击力
+    private int attackNum; //攻击力
 
-    private double defensiveNum; //防御力
+    private int defensiveNum; //防御力
 
     private double Probability_Lv1_Equipment; //防御力
 
@@ -34,7 +37,8 @@ public abstract class AbstractMonster {
 
     //攻击
     public void attack(){
-
+        log(getName() + " 发动了攻击！");
+        GameContext.getTheHero().hurt(getAttackNum());
     }
 
     //死亡；掉落装备，经验等
@@ -42,14 +46,21 @@ public abstract class AbstractMonster {
 
     //英雄逃跑，回复血量
     public void escape(){
+        log("逃跑成功！");
         setHP(getMaxHP());
+        GameContext.setTheMonster(null);
+        GameContext.setMonsterObserver(null);
     }
 
-    public void hurt(int damage){
+    public void hurt(int attackNum){
+
+        int damage = (attackNum - getDefensiveNum()) > 0 ? (attackNum - getDefensiveNum()) : 1;
+        log("怪物受到了 " + damage + " 点伤害");
         setHP(getHP() - damage);
         if(getHP() <= 0){
             die();
         }
+        notifyObservers();
     }
 
 
@@ -87,19 +98,19 @@ public abstract class AbstractMonster {
         this.HP = HP;
     }
 
-    public double getAttackNum() {
+    public int getAttackNum() {
         return attackNum;
     }
 
-    public void setAttackNum(double attackNum) {
+    public void setAttackNum(int attackNum) {
         this.attackNum = attackNum;
     }
 
-    public double getDefensiveNum() {
+    public int getDefensiveNum() {
         return defensiveNum;
     }
 
-    public void setDefensiveNum(double defensiveNum) {
+    public void setDefensiveNum(int defensiveNum) {
         this.defensiveNum = defensiveNum;
     }
 

@@ -24,5 +24,6 @@ public class Logger {
     public void log(String s){
         //todo log
         //打印到信息输出台上
+        System.out.println(s);
     }
 }

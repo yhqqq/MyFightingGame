@@ -1,8 +1,8 @@
 package Factory;
 
-import Model.ConcreteObject.BigMonster;
-import Model.ConcreteObject.HugeMonster;
-import Model.ConcreteObject.SmallMonster;
+import Model.ConcreteMonsterObject.BigMonster;
+import Model.ConcreteMonsterObject.HugeMonster;
+import Model.ConcreteMonsterObject.SmallMonster;
 
 /**
  * Created by yuhqqq on 2019/3/26.
