@@ -81,6 +81,13 @@ public class MainJpanel extends JPanel {
         }
 //        System.out.println(s);
     }
+
+    public static void setHero(int a,int b,int c, int d,int e,int f){
+
+    }
+    public static void setMonster(int a,int b,int c, int d,int e){
+
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
