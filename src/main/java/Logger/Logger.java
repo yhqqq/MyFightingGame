@@ -26,8 +26,8 @@ public class Logger {
     public void log(String s){
         //todo log
         //打印到信息输出台上
-        MainJpanel mainJpanel = new MainJpanel();
-        mainJpanel.log(s);
-//        System.out.println(s);
+//        MainJpanel mainJpanel = new MainJpanel();
+        MainJpanel.log(s);
+        System.out.println(s);
     }
 }

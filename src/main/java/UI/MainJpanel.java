@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.*;
+import java.util.List;
 
 import static Enum.SkillType.BUFF;
 import static Enum.SkillType.HUGE_ATTACK;
@@ -24,6 +26,7 @@ public class MainJpanel extends JPanel {
     //声明全局的begin对象
     Begin begin;
     int index = 0;
+    private static List<String> log_list = new ArrayList<String>();
     private ImageIcon background = new ImageIcon("src/main/resources/static/image/map.png");
     private ImageIcon photo = new ImageIcon("src/main/resources/static/image/saber.png");
 
@@ -71,8 +74,12 @@ public class MainJpanel extends JPanel {
 
     }
 
-    public void log(String s){
-        System.out.println(s);
+    public static void log(String s){
+        log_list.add(s);
+        if(log_list.size()>10){
+            log_list.remove(0);
+        }
+//        System.out.println(s);
     }
     @Override
     protected void paintComponent(Graphics g) {
@@ -172,15 +179,19 @@ public class MainJpanel extends JPanel {
         if(GameContext.getTheHero().getSword()!=null){
             g.drawString("武器       "+GameContext.getTheHero().getSword().getName(),990,500);
         }else{
-            g.drawString("武器       无",990,520);
+            g.drawString("武器       无",990,500);
         }
         if(GameContext.getTheHero().getShield()!=null){
-            g.drawString("防具       "+GameContext.getTheHero().getShield().getName(),990,540);
+            g.drawString("防具       "+GameContext.getTheHero().getShield().getName(),990,520);
         }else{
-            g.drawString("防具       无",990,560);
+            g.drawString("防具       无",990,520);
         }
-        g.fillRect(980, 580, 220, 1);
-        g.drawString("战斗日志    ",990,600);
+        g.fillRect(980, 540, 220, 1);
+        g.drawString("战斗日志    ",990,560);
+//        System.out.println(log_list.size());
+        for(int i=0;i<log_list.size();i++){
+            g.drawString(log_list.get(i),990,580+20*i);
+        }
 
         //在面板上面出玩家
         if(state == 0){
