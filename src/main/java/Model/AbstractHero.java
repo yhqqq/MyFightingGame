@@ -45,7 +45,7 @@ public abstract class AbstractHero extends Observable{
         public void run() {
             try {
                 normalAttackCDclock.acquire();
-                Thread.sleep((int)(HeroConstant.NORMALLATTACK_CD * 1000));
+                Thread.sleep(((long)(HeroConstant.NORMALLATTACK_CD * 1000)));
                 normalAttackCDclock.release();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -57,7 +57,7 @@ public abstract class AbstractHero extends Observable{
         public void run() {
             try {
                 buffAttackCDclock.acquire();
-                Thread.sleep(HeroConstant.BUFFATTACK_CD * 1000);
+                Thread.sleep(HeroConstant.BUFFATTACK_CD );
                 buffAttackCDclock.release();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -96,9 +96,10 @@ public abstract class AbstractHero extends Observable{
 
     public boolean normalAttack(){
         if(normalAttackCDclock.tryAcquire()){
+            normalAttackCDclock.release();
             log("你发动了普通攻击！");
             GameContext.getTheMonster().hurt(getAttackNum());
-            normalThread.start();
+//            normalThread.start();
             return true;
         }else {
             log("普攻冷却中，释放失败！");
@@ -108,9 +109,10 @@ public abstract class AbstractHero extends Observable{
 
     public boolean buffAttack(){
         if(buffAttackCDclock.tryAcquire()){
+            buffAttackCDclock.release();
             log("你发动了2技能！");
             GameContext.getTheMonster().hurt(getAttackNum() * 2);
-            buffThread.start();
+//            buffThread.start();
             return true;
         }else {
             log("技能冷却中，释放失败！");
@@ -120,9 +122,10 @@ public abstract class AbstractHero extends Observable{
 
     public boolean hugeAttack(){
         if(hugeAttackCDclock.tryAcquire()){
+            hugeAttackCDclock.release();
             log("你释放了大招！");
             GameContext.getTheMonster().hurt(getAttackNum() * 4);
-            hugeThread.start();
+//            hugeThread.start();
             return true;
         }else {
             log("技能冷却中，释放失败！");
@@ -133,11 +136,13 @@ public abstract class AbstractHero extends Observable{
     public void wearEquipment(AbstractEquipment equipment){
 
         if(equipment.getType() == SWORD.getType()){
-            throwEquipment(SWORD.getType());
+            if(getSword() != null)
+                throwEquipment(SWORD.getType());
             setSword(equipment);
             setAttackNum(getAttackNum() + equipment.getAttackNum());
         }else {
-            throwEquipment(SHIELD.getType());
+            if(getShield() != null)
+                throwEquipment(SHIELD.getType());
             setShield(equipment);
             setDefensiveNum(getDefensiveNum() + equipment.getDefensiveNum());
         }

@@ -26,7 +26,7 @@ public class SmallMonster extends AbstractMonster {
         log(getName() + " 被你击杀了");
         GameContext.getTheHero().gainExp(MonsterConstant.EXP_SMALL_MONSTER);
         GameContext.getTheMonster().deleteObserver(GameContext.getMonsterObserver());
-        GameContext.setTheMonster(null);
+//        GameContext.setTheMonster(null);
         GameContext.setMonsterObserver(null);
         GameContext.setEquipmentOntheGround(new EquipmentFactory().monsterDie(this));
     }
