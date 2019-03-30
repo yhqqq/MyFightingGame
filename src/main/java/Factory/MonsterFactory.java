@@ -10,14 +10,14 @@ import Model.ConcreteMonsterObject.SmallMonster;
 public class MonsterFactory {
 
     public SmallMonster newSmallMonster(){
-        return newSmallMonster();
+        return new SmallMonster();
     }
 
     public BigMonster newBigMonster(){
-        return newBigMonster();
+        return new BigMonster();
     }
 
     public HugeMonster newHugeMonster(){
-        return newHugeMonster();
+        return new HugeMonster();
     }
 }

@@ -3,9 +3,9 @@ package UI;
 /**
  * Created by alfred on 2019/3/24.
  */
-public class Rethread extends Thread{
+public class MainThread extends Thread{
     MainJpanel mainJpanel;
-    public Rethread(MainJpanel mainJpanel){
+    public MainThread(MainJpanel mainJpanel){
         this.mainJpanel=mainJpanel;
     }
     @Override
